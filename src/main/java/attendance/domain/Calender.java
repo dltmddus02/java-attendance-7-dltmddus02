@@ -1,9 +1,7 @@
 package attendance.domain;
 
-import static attendance.view.output.OutputMessage.NOT_SCHOOL_DAY;
+import static attendance.view.input.exception.InputErrorMessage.NOT_SCHOOL_DAY;
 
-import attendance.view.input.exception.InputErrorMessage;
-import attendance.view.input.exception.InputException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -34,9 +32,10 @@ public enum Calender {
 
     public static void checkDay(int month, int day, String dayOfTheWeek) {
         if (day == 25) {
-
-            System.out.printf("[ERROR] " + NOT_SCHOOL_DAY.getMessage(), month, day, dayOfTheWeek);
-            throw new InputException(InputErrorMessage.SPACE);
+            String not_school_day = String.format(NOT_SCHOOL_DAY.getMessage(), month, day, dayOfTheWeek);
+            throw new IllegalArgumentException(not_school_day);
+//            System.out.printf("[ERROR] " + NOT_SCHOOL_DAY.getMessage(), month, day, dayOfTheWeek);
+//            throw new InputException(InputErrorMessage.SPACE);
         }
         Calender calender = Arrays.stream(Calender.values())
                 .filter(c -> c.days.contains(day))
@@ -45,8 +44,11 @@ public enum Calender {
                 .orElse(null);
 
         if (calender != null) {
-            System.out.printf("[ERROR] " + NOT_SCHOOL_DAY.getMessage(), month, day, dayOfTheWeek);
-            throw new InputException(InputErrorMessage.SPACE);
+            String not_school_day = String.format(NOT_SCHOOL_DAY.getMessage(), month, day, dayOfTheWeek);
+            throw new IllegalArgumentException(not_school_day);
+
+//            System.out.printf("[ERROR] " + NOT_SCHOOL_DAY.getMessage(), month, day, dayOfTheWeek);
+//            throw new InputException(InputErrorMessage.SPACE);
         }
     }
 }

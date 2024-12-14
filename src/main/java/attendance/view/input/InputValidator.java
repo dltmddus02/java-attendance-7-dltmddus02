@@ -2,7 +2,6 @@ package attendance.view.input;
 
 import attendance.domain.CrewRepository;
 import attendance.view.input.exception.InputErrorMessage;
-import attendance.view.input.exception.InputException;
 import java.util.regex.Pattern;
 
 public class InputValidator {
@@ -12,27 +11,39 @@ public class InputValidator {
         validateNotNullOrEmpty(input);
         if (!input.equals("1") && !input.equals("2") && !input.equals("3") && !input.equals("4") && !input.equals(
                 "Q")) {
-            throw new InputException(InputErrorMessage.INCORRECT_INPUT_FORMAT);
+            throw new IllegalArgumentException(InputErrorMessage.INCORRECT_INPUT_FORMAT.getMessage());
         }
     }
 
     public static void validateNickName(String input) {
         validateNotNullOrEmpty(input);
         if (!CrewRepository.isExistCrew(input)) {
-            throw new InputException(InputErrorMessage.NOT_REGISTER_NICKNAME);
+            throw new IllegalArgumentException(InputErrorMessage.NOT_REGISTER_NICKNAME.getMessage());
         }
     }
 
     public static void validateAttendanceTIme(String input) {
         validateNotNullOrEmpty(input);
         if (!isCorrectFormat(input)) {
-            throw new InputException(InputErrorMessage.INCORRECT_INPUT_FORMAT);
+            throw new IllegalArgumentException(InputErrorMessage.INCORRECT_INPUT_FORMAT.getMessage());
+        }
+    }
+
+    public static void validateDateToModify(String input) {
+        validateNotNullOrEmpty(input);
+        try {
+            Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(InputErrorMessage.INCORRECT_INPUT_FORMAT.getMessage());
+        }
+        if (Integer.parseInt(input) < 1 || Integer.parseInt(input) > 31) {
+            throw new IllegalArgumentException(InputErrorMessage.INCORRECT_INPUT_FORMAT.getMessage());
         }
     }
 
     public static void validateNotNullOrEmpty(String input) {
         if (input == null || input.isBlank()) {
-            throw new InputException(InputErrorMessage.INCORRECT_INPUT_FORMAT);
+            throw new IllegalArgumentException(InputErrorMessage.INCORRECT_INPUT_FORMAT.getMessage());
         }
     }
 

@@ -7,8 +7,10 @@ public enum OutputMessage {
             + "3. 크루별 출석 기록 확인\n"
             + "4. 제적 위험자 확인\n"
             + "Q. 종료\n"),
-    INPUT_NICKNAME("닉네임을 입력해 주세요.\n"),
-    INPUT_ATTENDANCE_TIME("등교 시간을 입력해 주세요.\n"),
+    //    NOT_SCHOOL_DAY("%d월 %d일 %s은 등교일이 아닙니다.\n"),
+    INPUT_NICKNAME("닉네임을 입력해 주세요."),
+    INPUT_ATTENDANCE_TIME("등교 시간을 입력해 주세요."),
+    ATTENDANCE("%d월 %d일 %s %s (%s)"),
     INPUT_NICKNAME_TO_MODIFY("출석을 수정하려는 크루의 닉네임을 입력해 주세요.\n"),
     INPUT_DATE_TO_MODIFY("수정하려는 날짜(일)를 입력해 주세요.\n"),
     INPUT_ATTENDANCE_TIME_TO_MODIFY("언제로 변경하겠습니까?\n"),
