@@ -37,10 +37,10 @@ public class AttendanceController {
     private String prepareFeature() {
         LocalDate today = DateTimes.now().toLocalDate();
         todayMonth = today.getMonthValue();
-        todayDay = 13;
-        todayOfTheWeek = "금요일";
-//        todayDay = today.getDayOfMonth();
-//        todayOfTheWeek = Calender.getDayOfTheWeekByDay(todayDay);
+//        todayDay = 13;
+//        todayOfTheWeek = "금요일";
+        todayDay = today.getDayOfMonth();
+        todayOfTheWeek = Calender.getDayOfTheWeekByDay(todayDay);
 
         try {
             OutputView.printFeature(todayMonth, todayDay, todayOfTheWeek);
@@ -83,7 +83,7 @@ public class AttendanceController {
         try {
             OutputView.printNickName();
             String nickName = InputView.inputNickName();
-            attendanceModifyService.recordAttendance(nickName);
+            attendanceModifyService.recordAttendance(todayDay, nickName);
         } catch (InputException e) {
             System.out.println(e.getMessage());
         }
