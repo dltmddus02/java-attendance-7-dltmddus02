@@ -32,5 +32,9 @@ public class CrewRepository {
                 .orElse(new Crew(name));
     }
 
+    public static boolean isExistCrew(String name) {
+        return crews().stream()
+                .anyMatch(c -> c.isExistName(name));
+    }
 
 }

@@ -8,4 +8,10 @@ public class InputView {
         InputValidator.validateFeature(feature);
         return feature;
     }
+
+    public static String inputNickName() {
+        String nickName = Console.readLine();
+        InputValidator.validateNickName(nickName);
+        return nickName;
+    }
 }

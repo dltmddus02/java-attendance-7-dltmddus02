@@ -1,5 +1,6 @@
 package attendance.view.input;
 
+import attendance.domain.CrewRepository;
 import attendance.view.input.exception.InputErrorMessage;
 import attendance.view.input.exception.InputException;
 import java.util.regex.Pattern;
@@ -12,6 +13,13 @@ public class InputValidator {
         if (!input.equals("1") && !input.equals("2") && !input.equals("3") && !input.equals("4") && !input.equals(
                 "Q")) {
             throw new InputException(InputErrorMessage.INCORRECT_INPUT_FORMAT);
+        }
+    }
+
+    public static void validateNickName(String input) {
+        validateNotNullOrEmpty(input);
+        if (!CrewRepository.isExistCrew(input)) {
+            throw new InputException(InputErrorMessage.NOT_REGISTER_NICKNAME);
         }
     }
 
