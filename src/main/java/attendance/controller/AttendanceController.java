@@ -65,17 +65,21 @@ public class AttendanceController {
     }
 
     private void attendanceModification() {
-        try {
-            OutputView.printNickName();
-            String nickName = InputView.inputNickName();
-            OutputView.printDateToModify();
-            String dateToModify = InputView.inputDateToModify();
-            OutputView.printAttendanceTimeToModify();
-            String timeToModify = InputView.inputAttendanceTime();
+        while (true) {
+            try {
+                OutputView.printNickName();
+                String nickName = InputView.inputNickName();
+                OutputView.printDateToModify();
+                String dateToModify = InputView.inputDateToModify();
+                OutputView.printAttendanceTimeToModify();
+                String timeToModify = InputView.inputAttendanceTime();
 
-            attendanceModifyService.attendanceModify(nickName, dateToModify, timeToModify);
-        } catch (InputException e) {
-            System.out.println(e.getMessage());
+                attendanceModifyService.attendanceModify(nickName, dateToModify, timeToModify);
+                run();
+                return;
+            } catch (InputException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
