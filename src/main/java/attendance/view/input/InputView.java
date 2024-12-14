@@ -20,4 +20,10 @@ public class InputView {
         InputValidator.validateAttendanceTIme(attendanceTime);
         return attendanceTime;
     }
+
+    public static String inputDateToModify() {
+        String dateToModify = Console.readLine();
+        InputValidator.validateDateToModify(dateToModify);
+        return dateToModify;
+    }
 }
