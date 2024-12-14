@@ -14,17 +14,14 @@ public class AttendanceModifyService {
         crew.modifyAttendance(date, timeToModify);
     }
 
-    public void recordAttendance(String name) {
+    public void recordAttendance(int todayDay, String name) {
         Crew crew = CrewRepository.findCrewByName(name);
         OutputView.printAttendanceRecord(name);
 
-        for (int currentDay = 1; currentDay <= 31; currentDay++) {
+        for (int currentDay = 1; currentDay <= todayDay; currentDay++) {
             if (Calender.isFreeDay(currentDay)) {
                 continue;
             }
-
-//            String dateTime = crew.getDateTime().get(currentDay);
-
             String dayOfTheWeek = Calender.getDayOfTheWeekByDay(currentDay);
             String time = setTime(name, currentDay);
             String type = AttendanceType.getTypeByday(currentDay, time);
