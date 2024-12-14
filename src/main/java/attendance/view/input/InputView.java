@@ -14,4 +14,10 @@ public class InputView {
         InputValidator.validateNickName(nickName);
         return nickName;
     }
+
+    public static String inputAttendanceTime() {
+        String attendanceTime = Console.readLine();
+        InputValidator.validateAttendanceTIme(attendanceTime);
+        return attendanceTime;
+    }
 }

@@ -23,6 +23,13 @@ public class InputValidator {
         }
     }
 
+    public static void validateAttendanceTIme(String input) {
+        validateNotNullOrEmpty(input);
+        if (!isCorrectFormat(input)) {
+            throw new InputException(InputErrorMessage.INCORRECT_INPUT_FORMAT);
+        }
+    }
+
     public static void validateNotNullOrEmpty(String input) {
         if (input == null || input.isBlank()) {
             throw new InputException(InputErrorMessage.INCORRECT_INPUT_FORMAT);
@@ -52,10 +59,11 @@ public class InputValidator {
         String characterPattern = "[가-힣]+";
         String numberPattern = "[0-9]+";
 
-        String singlePattern = String.format("\\[(%s),(%s)]", characterPattern, numberPattern);
-        String repeatPattern = String.format("%s(;%s)*", singlePattern, singlePattern);
+        String datePattern = "2[0-3]|[01][0-9]:[0-5][0-9]";
+//        String singlePattern = String.format("\\[(%s),(%s)]", characterPattern, numberPattern);
+//        String repeatPattern = String.format("%s(;%s)*", singlePattern, singlePattern);
 
-        Pattern correctPattern = Pattern.compile("^" + repeatPattern + "$");
+        Pattern correctPattern = Pattern.compile(datePattern);
 
         return correctPattern.matcher(input).find();
     }
