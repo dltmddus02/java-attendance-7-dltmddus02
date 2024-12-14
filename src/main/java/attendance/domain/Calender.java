@@ -1,5 +1,9 @@
 package attendance.domain;
 
+import static attendance.view.output.OutputMessage.NOT_SCHOOL_DAY;
+
+import attendance.view.input.exception.InputErrorMessage;
+import attendance.view.input.exception.InputException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,5 +30,23 @@ public enum Calender {
                 .map(c -> c.dayOfTheWeek)
                 .findFirst()
                 .orElse(null);
+    }
+
+    public static void checkDay(int month, int day, String dayOfTheWeek) {
+        if (day == 25) {
+
+            System.out.printf("[ERROR] " + NOT_SCHOOL_DAY.getMessage(), month, day, dayOfTheWeek);
+            throw new InputException(InputErrorMessage.SPACE);
+        }
+        Calender calender = Arrays.stream(Calender.values())
+                .filter(c -> c.days.contains(day))
+                .filter(c -> c.dayOfTheWeek.equals(SAT.dayOfTheWeek) || c.dayOfTheWeek.equals(SUN.dayOfTheWeek))
+                .findFirst()
+                .orElse(null);
+
+        if (calender != null) {
+            System.out.printf("[ERROR] " + NOT_SCHOOL_DAY.getMessage(), month, day, dayOfTheWeek);
+            throw new InputException(InputErrorMessage.SPACE);
+        }
     }
 }
