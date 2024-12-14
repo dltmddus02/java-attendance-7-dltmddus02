@@ -15,8 +15,8 @@ public enum OutputMessage {
     INPUT_DATE_TO_MODIFY("수정하려는 날짜(일)를 입력해 주세요.\n"),
     INPUT_ATTENDANCE_TIME_TO_MODIFY("언제로 변경하겠습니까?\n"),
     FINISH_MODIFY("12월 %02d일 %s %s (%s) -> %s (%s) 수정 완료!\n"),
-    ATTENDANCE_RECORD("%d월 %02d일 %s 13:00 (%s)\n"),
-    ATTENDANCE_RECORD_DETAIL("이번 달 %s의 출석 기록입니다.\n"),
+    ATTENDANCE_RECORD("이번 달 %s의 출석 기록입니다.\n"),
+    ATTENDANCE_RECORD_DETAIL("12월 %02d일 %s %s (%s)\n"),
     RISK_RESULT("제적 위험자 조회 결과\n"),
     RISK_RESULT_DETAIL("- %s: 결석 %d회, 지각 %d회 (%s)\n");
 

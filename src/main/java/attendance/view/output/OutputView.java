@@ -1,7 +1,8 @@
 package attendance.view.output;
 
 import static attendance.view.output.OutputMessage.ATTENDANCE;
-import static attendance.view.output.OutputMessage.FINISH_MODIFY;
+import static attendance.view.output.OutputMessage.ATTENDANCE_RECORD;
+import static attendance.view.output.OutputMessage.ATTENDANCE_RECORD_DETAIL;
 import static attendance.view.output.OutputMessage.INPUT_ATTENDANCE_TIME;
 import static attendance.view.output.OutputMessage.INPUT_ATTENDANCE_TIME_TO_MODIFY;
 import static attendance.view.output.OutputMessage.INPUT_DATE_TO_MODIFY;
@@ -25,7 +26,6 @@ public class OutputView {
 
     public static void printAttendance(int todayMonth, int todayDay, String todayOfTheWeek, String attendanceTime) {
         String attendanceType = AttendanceType.getTypeByday(todayDay, attendanceTime);
-//        System.out.println(attendanceType);
         System.out.printf(ATTENDANCE.getMessage(), todayMonth, todayDay, todayOfTheWeek, attendanceTime,
                 attendanceType);
     }
@@ -38,7 +38,11 @@ public class OutputView {
         System.out.println(INPUT_ATTENDANCE_TIME_TO_MODIFY.getMessage());
     }
 
-    public static void printFinishModify(int todayDay, String todayOfTheWeek) {
-        System.out.println(FINISH_MODIFY.getMessage());
+    public static void printAttendanceRecord(String name) {
+        System.out.printf(ATTENDANCE_RECORD.getMessage(), name);
+    }
+
+    public static void printAttendanceRecordDetail(int day, String dayOfTheWeek, String time, String type) {
+        System.out.printf(ATTENDANCE_RECORD_DETAIL.getMessage(), day, dayOfTheWeek, time, type);
     }
 }

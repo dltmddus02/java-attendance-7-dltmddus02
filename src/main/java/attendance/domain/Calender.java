@@ -34,8 +34,6 @@ public enum Calender {
         if (day == 25) {
             String not_school_day = String.format(NOT_SCHOOL_DAY.getMessage(), month, day, dayOfTheWeek);
             throw new IllegalArgumentException(not_school_day);
-//            System.out.printf("[ERROR] " + NOT_SCHOOL_DAY.getMessage(), month, day, dayOfTheWeek);
-//            throw new InputException(InputErrorMessage.SPACE);
         }
         Calender calender = Arrays.stream(Calender.values())
                 .filter(c -> c.days.contains(day))
@@ -46,9 +44,16 @@ public enum Calender {
         if (calender != null) {
             String not_school_day = String.format(NOT_SCHOOL_DAY.getMessage(), month, day, dayOfTheWeek);
             throw new IllegalArgumentException(not_school_day);
-
-//            System.out.printf("[ERROR] " + NOT_SCHOOL_DAY.getMessage(), month, day, dayOfTheWeek);
-//            throw new InputException(InputErrorMessage.SPACE);
         }
     }
+
+    public static boolean isFreeDay(int day) {
+        if (day == 25) {
+            return true;
+        }
+        return Arrays.stream(Calender.values())
+                .filter(c -> c.days.contains(day))
+                .anyMatch(c -> c.dayOfTheWeek.equals(SAT.dayOfTheWeek) || c.dayOfTheWeek.equals(SUN.dayOfTheWeek));
+    }
+
 }

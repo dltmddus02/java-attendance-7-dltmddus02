@@ -1,5 +1,7 @@
 package attendance.domain;
 
+import static attendance.view.output.OutputMessage.FINISH_MODIFY;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class Crew {
         return name;
     }
 
-    public List<String> getDateTIme() {
+    public List<String> getDateTime() {
         return dateTime;
     }
 
@@ -33,11 +35,16 @@ public class Crew {
                 .filter(c -> c.contains(String.format("2024-12-%02d", day)))
                 .findFirst()
                 .orElse(null);
-        System.out.println(beforeTime);
+        beforeTime = beforeTime.substring(11, 16);
 
-        String newTime = String.format("2024-12-%02d", day) + " " + time;
-        System.out.println(newTime);
-        dateTime.set(getIndex(day), newTime);
+        dateTime.set(getIndex(day), time);
+
+        String beforeAttendanceType = AttendanceType.getTypeByday(day, beforeTime);
+        String newAttendanceType = AttendanceType.getTypeByday(day, time);
+
+        System.out.printf(FINISH_MODIFY.getMessage(), day, Calender.getDayOfTheWeekByDay(day), beforeTime,
+                beforeAttendanceType,
+                time, newAttendanceType);
     }
 
     private int getIndex(int day) {

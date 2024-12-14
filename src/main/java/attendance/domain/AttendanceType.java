@@ -22,6 +22,10 @@ public enum AttendanceType {
     //    시간에 따라 리턴하는 함수
     public static String getTypeByday(int day, String attendanceTime) {
         String dayOfTheWeek = Calender.getDayOfTheWeekByDay(day);
+        if (attendanceTime.equals("--:--")) {
+            return AttendanceType.ABSENCE.getType();
+        }
+
         int hour = Integer.parseInt(attendanceTime.substring(0, 2));
         int minute = Integer.parseInt(attendanceTime.substring(3, 5));
         LocalTime localTime = LocalTime.of(hour, minute);
