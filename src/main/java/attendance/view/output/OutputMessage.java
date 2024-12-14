@@ -17,6 +17,9 @@ public enum OutputMessage {
     FINISH_MODIFY("12월 %02d일 %s %s (%s) -> %s (%s) 수정 완료!\n"),
     ATTENDANCE_RECORD("이번 달 %s의 출석 기록입니다.\n"),
     ATTENDANCE_RECORD_DETAIL("12월 %02d일 %s %s (%s)\n"),
+    ATTENDANCE_RESULT("출석: %d회\n"
+            + "지각: %d회\n"
+            + "결석: %d회\n"),
     RISK_RESULT("제적 위험자 조회 결과\n"),
     RISK_RESULT_DETAIL("- %s: 결석 %d회, 지각 %d회 (%s)\n");
 

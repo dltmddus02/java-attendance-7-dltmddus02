@@ -3,6 +3,7 @@ package attendance.view.output;
 import static attendance.view.output.OutputMessage.ATTENDANCE;
 import static attendance.view.output.OutputMessage.ATTENDANCE_RECORD;
 import static attendance.view.output.OutputMessage.ATTENDANCE_RECORD_DETAIL;
+import static attendance.view.output.OutputMessage.ATTENDANCE_RESULT;
 import static attendance.view.output.OutputMessage.INPUT_ATTENDANCE_TIME;
 import static attendance.view.output.OutputMessage.INPUT_ATTENDANCE_TIME_TO_MODIFY;
 import static attendance.view.output.OutputMessage.INPUT_DATE_TO_MODIFY;
@@ -44,5 +45,9 @@ public class OutputView {
 
     public static void printAttendanceRecordDetail(int day, String dayOfTheWeek, String time, String type) {
         System.out.printf(ATTENDANCE_RECORD_DETAIL.getMessage(), day, dayOfTheWeek, time, type);
+    }
+
+    public static void printAttendanceResult(int attendance, int lateness, int absence) {
+        System.out.printf(ATTENDANCE_RESULT.getMessage(), attendance, lateness, absence);
     }
 }

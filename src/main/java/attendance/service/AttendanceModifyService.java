@@ -15,9 +15,11 @@ public class AttendanceModifyService {
     }
 
     public void recordAttendance(int todayDay, String name) {
-        Crew crew = CrewRepository.findCrewByName(name);
         OutputView.printAttendanceRecord(name);
 
+        int attendance = 0;
+        int lateness = 0;
+        int absence = 0;
         for (int currentDay = 1; currentDay <= todayDay; currentDay++) {
             if (Calender.isFreeDay(currentDay)) {
                 continue;
@@ -26,8 +28,27 @@ public class AttendanceModifyService {
             String time = setTime(name, currentDay);
             String type = AttendanceType.getTypeByday(currentDay, time);
 
+            if (type.equals(AttendanceType.ATTENDANCE.getType())) {
+                attendance++;
+            }
+            if (type.equals(AttendanceType.LATENESS.getType())) {
+                lateness++;
+            }
+            if (type.equals(AttendanceType.ABSENCE.getType())) {
+                absence++;
+            }
+
             OutputView.printAttendanceRecordDetail(currentDay, dayOfTheWeek, time, type);
         }
+        OutputView.printAttendanceResult(attendance, lateness, absence);
+        if (absence > 5) {
+            System.out.println("제적 대상자입니다.");
+        } else if (absence >= 3) {
+            System.out.println("면담 대상자입니다.");
+        } else if (absence >= 2) {
+            System.out.println("경고 대상자입니다.");
+        }
+
     }
 
     private String setTime(String name, int currentDay) {
